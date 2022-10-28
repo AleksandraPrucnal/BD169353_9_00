@@ -22,3 +22,7 @@ ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
 
 INSERT INTO walizka(pojemnosc, kolor, id_wlasciciela) VALUES (50, 'zolty', 1);
 INSERT INTO walizka (pojemnosc, kolor, id_wlasciciela) VALUES (200, 'rozowy', 3);
+
+CREATE TABLE izba(adres_budynku varchar(40) not null,
+nazwa_izby varchar(20) not null, metraz int unsigned not null, wlasciciel,
+FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci), PRIMARY KEY (adres_budynku, nazwa_izby));
