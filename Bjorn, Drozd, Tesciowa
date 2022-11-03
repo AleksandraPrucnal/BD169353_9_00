@@ -23,6 +23,55 @@ ALTER TABLE walizka ALTER COLUMN kolor SET DEFAULT 'rozowy';
 INSERT INTO walizka(pojemnosc, kolor, id_wlasciciela) VALUES (50, 'zolty', 1);
 INSERT INTO walizka (pojemnosc, kolor, id_wlasciciela) VALUES (200, 'rozowy', 3);
 
-CREATE TABLE izba(adres_budynku varchar(40) not null,
-nazwa_izby varchar(20) not null, metraz int unsigned not null, wlasciciel,
-FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci), PRIMARY KEY (adres_budynku, nazwa_izby));
+CREATE TABLE izba(
+adres_budynku varchar(40) not null,
+nazwa_izby varchar(20) not null,
+metraz int unsigned not null, 
+wlasciciel INT,
+FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci), 
+PRIMARY KEY (adres_budynku, nazwa_izby));
+
+ALTER TABLE izba ADD kolor VARCHAR(20) DEFAULT "czarny" AFTER metraz;
+
+INSERT INTO izba (adres_budynku, nazwa_izby, metraz, kolor, wlasciciel) VALUES ("Klonowa 2","spizarnia", 5, "niebieski", 1);
+
+CREATE TABLE przetwory( 
+id_przetworu INT, 
+rok_produkcji YEAR DEFAULT 1654, 
+id_wykonawcy INT, 
+zawartosc VARCHAR(100),
+dodatek VARCHAR(100) DEFAULT "papryczka chilli",
+id_konsumenta INT,
+FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci), 
+FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci));
+
+INSERT INTO przetwory (id_przetworu, rok_produkcji, id_wykonawcy, zawartosc, dodatek, id_konsumenta) VALUES (1, 1870, 1, "bigos", "papryczka chilli", 3);
+
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking1", "wiking", "2002-05-20",20);
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking2", "wiking", "1972-11-07",50);
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking3", "wiking", "1990-08-02",32);
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking4", "wiking", "1931-07-06",91);
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking5", "wiking", "1942-12-30",80);
+
+CREATE TABLE statek( 
+nazwa_statku VARCHAR(50), 
+rodzaj_statku ENUM("lodka", "parowiec", "podwodny"), 
+data_wodowania DATE, 
+max_ladownosc INT, 
+PRIMARY KEY (nazwa_statku));
+
+INSERT INTO statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ("Titanic", "parowiec", "1911-05-31", 2000);
+INSERT INTO statek (nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ("Podwodny", "lodka", "2000-01-01", 50);
+
+ALTER TABLE postac ADD funkcja VARCHAR(50);
+
+UPDATE postac SET funkcja="Kapitan" WHERE nazwa="Bjorn";
+
+ALTER TABLE postac ADD statek_nazwa VARCHAR(50);
+ALTER TABLE postac ADD FOREIGN KEY (statek_nazwa) REFERENCES statek(nazwa_statku);
+
+UPDATE postac SET statek_nazwa="Titanic" WHERE rodzaj="wiking" OR rodzaj="ptak"
+
+DELETE FROM izba WHERE nazwa_izby="spizarnia";
+
+DROP TABLE IF EXISTS izba;
