@@ -1,2 +1,0 @@
- DELETE FROM postac WHERE nazwa="Wiking3" OR nazwa="Wiking5";
- 

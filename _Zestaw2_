@@ -1,0 +1,12 @@
+ DELETE FROM postac WHERE nazwa="Wiking3" OR nazwa="Wiking5";
+ 
+ ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+ ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+ ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1;
+ ALTER TABLE postac DROP PRIMARY KEY;
+ 
+ ALTER TABLE postac ADD pesel VARCHAR(11) NOT NULL AFTER nazwa;
+ 
+ INSERT INTO postac(nazwa,pesel, rodzaj, data_ur, wiek) VALUES ("Gertruda Nieszczera","50111158702", "kobieta", "1650-11-11", 372);
+ 
+ UPDATE postac SET statek_nazwa="Titanic" WHERE nazwa LIKE "%a%";
