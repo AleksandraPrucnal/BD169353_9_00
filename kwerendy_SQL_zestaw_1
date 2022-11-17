@@ -45,7 +45,7 @@ id_konsumenta INT,
 FOREIGN KEY (id_wykonawcy) REFERENCES postac(id_postaci), 
 FOREIGN KEY (id_konsumenta) REFERENCES postac(id_postaci));
 
-INSERT INTO przetwory (id_przetworu, rok_produkcji, id_wykonawcy, zawartosc, dodatek, id_konsumenta) VALUES (1, 1870, 1, "bigos", "papryczka chilli", 3);
+INSERT INTO przetwory (id_przetworu, rok_produkcji, id_wykonawcy, zawartosc, dodatek, id_konsumenta) VALUES (1, 1970, 1, "bigos", "papryczka chilli", 3);
 
 INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking1", "wiking", "2002-05-20",20);
 INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES ("Wiking2", "wiking", "1972-11-07",50);
