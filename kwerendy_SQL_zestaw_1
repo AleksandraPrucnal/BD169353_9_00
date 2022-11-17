@@ -37,7 +37,7 @@ INSERT INTO izba (adres_budynku, nazwa_izby, metraz, kolor, wlasciciel) VALUES (
 
 CREATE TABLE przetwory( 
 id_przetworu INT, 
-rok_produkcji YEAR DEFAULT 1654, 
+rok_produkcji YEAR DEFAULT 2000, 
 id_wykonawcy INT, 
 zawartosc VARCHAR(100),
 dodatek VARCHAR(100) DEFAULT "papryczka chilli",
