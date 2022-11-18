@@ -1,5 +1,5 @@
 _______________________________________ZADANIE 1 ______________________________________________________
-DELETE FROM postac WHERE nazwa="Wiking3" OR nazwa="Wiking5";
+ DELETE FROM postac WHERE nazwa="Wiking3" OR nazwa="Wiking5";
  
  ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
  ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
@@ -10,17 +10,15 @@ DELETE FROM postac WHERE nazwa="Wiking3" OR nazwa="Wiking5";
  
 _______________________________________ZADANIE 2 ______________________________________________________
  ALTER TABLE postac ADD pesel VARCHAR(11) NOT NULL AFTER nazwa;
- ALTER TABLE postac ADD PRIMARY KEY (pesel);
  
  UPDATE postac SET pesel="12345678912" WHERE id_postaci=1;
  UPDATE postac SET pesel="98765432198" WHERE id_postaci=2;
  UPDATE postac SET pesel="56483279152" WHERE id_postaci=3;
- UPDATE postac SET pesel="56483279152" WHERE id_postaci=4;
+ UPDATE postac SET pesel="89623475126" WHERE id_postaci=4;
  UPDATE postac SET pesel="46276432945" WHERE id_postaci=5;
- UPDATE postac SET pesel="45398752162" WHERE id_postaci=6;
  UPDATE postac SET pesel="87512365478" WHERE id_postaci=7;
- UPDATE postac SET pesel="46122357894" WHERE id_postaci=8;
- 
+ UPDATE postac SET pesel="46122357894" WHERE id_postaci=9;
+
  ALTER TABLE postac ADD PRIMARY KEY (pesel);
  
  ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
@@ -30,21 +28,29 @@ _______________________________________ZADANIE 2 _______________________________
  UPDATE postac SET statek_nazwa="Titanic" WHERE nazwa LIKE "%a%";
  UPDATE statek SET max_ladownosc=max_ladownosc*0.7 WHERE YEAR(data_wodowania) < 2000;
  
-  _______________________________________ZADANIE 4 ______________________________________________________
+ _______________________________________ZADANIE 4 ______________________________________________________
  ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena','waz');
  INSERT INTO postac(id_postaci, nazwa,pesel, rodzaj, data_ur, wiek) VALUES (11, "Loko", 25836914798,"waz", "2022-02-02",0);
  
- CREATE TABLE marynarz(
- id_postaci INT NOT NULL,
- pesel VARCHAR(11) NOT NULL,
- nazwa varchar(40) NOT NULL,
- rodzaj enum('wiking','ptak','kobieta','syrena','waz') NOT NULL,
- data_ur date NOT NULL,
- wiek int unsigned NOT NULL,
- PRIMARY KEY (pesel));
+ CREATE TABLE marynarz LIKE postac;
+ INSERT INTO marynarz SELECT* FROM postac WHERE statek_nazwa != NULL;
  
+ _______________________________________ZADANIE 5 ______________________________________________________
+ UPDATE marynarz SET statek_nazwa= NULL;
+ UPDATE postac SET statek_nazwa= NULL;
  
- http://www.bazy-danych.net/select-into.html
-
+ DELETE FROM postac WHERE nazwa= "Wiking4";
+ DELETE FROM marynarz WHERE nazwa= "Wiking4";
  
-
+ DELETE FROM statek;
+ 
+ ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+ ALTER TABLE marynarz DROP FOREIGN KEY marynarz_ibfk_1;
+ DROP TABLE statek;
+ 
+ CREATE TABLE zwierz(
+ id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ nazwa VARCHAR(40),
+ wiek INT);
+ 
+ INSERT INTO zwierz(id,nazwa,wiek) SELECT id_postaci, nazwa, wiek FROM postac WHERE rodzaj = "waz" OR rodzaj = "ptak";
