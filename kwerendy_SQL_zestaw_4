@@ -1,0 +1,4 @@
+_______________________________________ZADANIE 1 ______________________________________________________
+SELECT AVG(waga) AS waga_srednia_wikingow FROM kreatura WHERE rodzaj="wiking";
+SELECT AVG(waga) AS waga_srednia, rodzaj FROM kreatura GROUP BY rodzaj;
+
