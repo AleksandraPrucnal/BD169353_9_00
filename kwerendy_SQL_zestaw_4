@@ -2,6 +2,15 @@ _______________________________________ZADANIE 1 _______________________________
 SELECT AVG(waga) AS waga_srednia_wikingow FROM kreatura WHERE rodzaj="wiking";
 SELECT AVG(waga) AS waga_srednia, rodzaj FROM kreatura GROUP BY rodzaj;
 SELECT rodzaj, AVG(YEAR(dataUr)) FROM kreatura GROUP BY rodzaj;
+
 _______________________________________ZADANIE 2 ______________________________________________________
 SELECT rodzaj, SUM(waga) FROM zasob GROUP BY rodzaj;
 SELECT nazwa, SUM(waga) FROM zasob WHERE ilosc >=4 GROUP BY nazwa HAVING SUM(waga) > 10;
+SELECT COUNT(DISTINCT(nazwa))AS "ilosc_roznych_nazw",rodzaj  FROM zasob GROUP BY rodzaj HAVING COUNT(ilosc)>1;
+
+_______________________________________ZADANIE 3 ______________________________________________________
+SELECT idKreatury, SUM(ilosc) AS "ilosc_zasobow"  FROM ekwipunek GROUP BY idKreatury;
+SELECT kreatura.nazwa, zasob.nazwa FROM ekwipunek INNER JOIN kreatura ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idEkwipunku;
+SELECT kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury WHERE ekwipunek.idEkwipunku is NULL;
+
+_______________________________________ZADANIE 4 ______________________________________________________
