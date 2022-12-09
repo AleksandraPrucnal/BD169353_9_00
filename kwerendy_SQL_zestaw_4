@@ -14,7 +14,9 @@ SELECT kreatura.nazwa, zasob.nazwa FROM ekwipunek INNER JOIN kreatura ON kreatur
 SELECT kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury WHERE ekwipunek.idEkwipunku is NULL;
 
 _______________________________________ZADANIE 4 ______________________________________________________
+SELECT * FROM kreatura NATURAL JOIN ekwipunek INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu WHERE YEAR(dataUr) <= 1679 AND YEAR(dataUr) >= 1670;
 SELECT zasob.nazwa, kreatura.nazwa FROM ekwipunek LEFT JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu LEFT JOIN kreatura ON ekwipunek.idKreatury = kreatura.idKreatury where YEAR(kreatura.dataUR)>=1670 AND YEAR(kreatura.dataUR)<=1680;
+
 SELECT kreatura.nazwa FROM ekwipunek LEFT JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu LEFT JOIN kreatura ON ekwipunek.idKreatury = kreatura.idKreatury where zasob.rodzaj = 'jedzenie' order by kreatura.dataUr ASC limit 5;
 SELECT kolumna1.nazwa, kolumna2.nazwa FROM kreatura kolumna1 LEFT JOIN kreatura kolumna2 ON kolumna1.idKreatury + 5 = kolumna2.idKreatury WHERE kolumna2.nazwa IS NOT NULL;
 
