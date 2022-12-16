@@ -8,7 +8,7 @@ ALTER TABLE wyprawa MODIFY id_wyprawy INT NOT NULL AUTO_INCREMENT;
 
 SELECT kreatura.nazwa FROM kreatura LEFT JOIN uczestnicy ON uczestnicy.id_uczestnika = kreatura.idKreatury WHERE uczestnicy.id_wyprawy is NULL;
 
-
-
+SELECT wyprawa.nazwa, SUM(ilosc) FROM wyprawa INNER JOIN uczestnicy ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy INNER JOIN ekwipunek ON ekwipunek.idKreatury = uczestnicy.id_ucz GROUP BY wyprawa.nazwa;
 
 _______________________________________ZADANIE 2 ______________________________________________________
+SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) FROM uczestnicy INNER JOIN wyprawa ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy INNER JOIN kreatura ON kreatura.idKreatury = uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
