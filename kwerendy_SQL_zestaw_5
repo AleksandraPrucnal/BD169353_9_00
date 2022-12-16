@@ -1,0 +1,14 @@
+_______________________________________ZADANIE 1 ______________________________________________________
+CREATE TABLE uczestnicy SELECT * FROM wikingowie.uczestnicy;
+CREATE TABLE etapy_wyprawy SELECT* FROM wikingowie.etapy_wyprawy;
+CREATE TABLE sektor SELECT* FROM wikingowie.sektor;
+CREATE TABLE wyprawa SELECT* FROM wikingowie.wyprawa;
+ALTER TABLE wyprawa ADD PRIMARY KEY(id_wyprawy);
+ALTER TABLE wyprawa MODIFY id_wyprawy INT NOT NULL AUTO_INCREMENT;
+
+SELECT kreatura.nazwa FROM kreatura LEFT JOIN uczestnicy ON uczestnicy.id_uczestnika = kreatura.idKreatury WHERE uczestnicy.id_wyprawy is NULL;
+
+
+
+
+_______________________________________ZADANIE 2 ______________________________________________________
