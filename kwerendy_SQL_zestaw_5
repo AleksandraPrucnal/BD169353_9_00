@@ -10,5 +10,8 @@ SELECT kreatura.nazwa FROM kreatura LEFT JOIN uczestnicy ON uczestnicy.id_uczest
 
 SELECT wyprawa.nazwa, SUM(ilosc) FROM wyprawa INNER JOIN uczestnicy ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy INNER JOIN ekwipunek ON ekwipunek.idKreatury = uczestnicy.id_ucz GROUP BY wyprawa.nazwa;
 
+
 _______________________________________ZADANIE 2 ______________________________________________________
 SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.nazwa) FROM uczestnicy INNER JOIN wyprawa ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy INNER JOIN kreatura ON kreatura.idKreatury = uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
+
+SELECT wyprawa.nazwa, GROUP_CONCAT(etapy_wyprawy.idEtapu), sektor.nazwa AS nazwa_sektora FROM wyprawa INNER JOIN etapy_wyprawy ON etapy_wyprawy.idWyprawy = wyprawa.id_wyprawy INNER JOIN sektor ON sektor.id_sektora = etapy_wyprawy.sektor GROUP BY wyprawa.nazwa;
