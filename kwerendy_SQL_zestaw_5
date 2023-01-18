@@ -17,7 +17,7 @@ SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura.naz
 SELECT wyprawa.nazwa, GROUP_CONCAT(etapy_wyprawy.idEtapu), sektor.nazwa AS nazwa_sektora FROM wyprawa INNER JOIN etapy_wyprawy ON etapy_wyprawy.idWyprawy = wyprawa.id_wyprawy INNER JOIN sektor ON sektor.id_sektora = etapy_wyprawy.sektor GROUP BY wyprawa.nazwa;
 
 
-
+_______________________________________ZADANIE 3 ______________________________________________________
 SELECT sektor.nazwa, COUNT(etapy_wyprawy.sektor) FROM sektor LEFT JOIN etapy_wyprawy ON etapy_wyprawy.sektor=sektor.id_sektora GROUP BY sektor.nazwa;
 SELECT kreatura.nazwa, IF(COUNT(uczestnicy.id_uczestnika),"bral udzial w wyprawie","nie bral udzialu w wyprawie") AS wynik FROM kreatura LEFT JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY kreatura.nazwa;
 
