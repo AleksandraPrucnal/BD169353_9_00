@@ -34,6 +34,7 @@ _______________________________________ZADANIE 2 _______________________________
  
  CREATE TABLE marynarz LIKE postac;
  INSERT INTO marynarz SELECT* FROM postac WHERE statek_nazwa != NULL;
+ INSERT INTO marynarz SELECT* FROM postac WHERE statek_nazwa is not NULL;
  
  _______________________________________ZADANIE 5 ______________________________________________________
  UPDATE marynarz SET statek_nazwa= NULL;
